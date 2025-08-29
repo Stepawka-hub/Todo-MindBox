@@ -5,6 +5,9 @@ export const basePalette = {
   background: {
     default: "#f5f5f5",
   },
+  text: {
+    disabled: "#dbdbdb",
+  },
   success: {
     main: "#4caf50",
   },

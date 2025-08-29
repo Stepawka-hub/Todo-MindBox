@@ -1,7 +1,8 @@
-import { Tab, Tabs } from "@mui/material";
+import { Tabs } from "@mui/material";
 import { TTaskFilter } from "@types";
 import { FC, SyntheticEvent } from "react";
 import { TaskFilterProps } from "./type";
+import { Tab } from '@ui';
 
 export const TaskFilter: FC<TaskFilterProps> = ({
   filter,

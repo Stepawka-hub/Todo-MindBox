@@ -43,7 +43,7 @@ export const TodoPage: FC = () => {
   return (
     <Paper sx={pageWrapperStyle}>
       <Grid container direction="column">
-        <Typography variant="h2" sx={pageTitleStyle}>
+        <Typography color='primary' variant="h2" sx={pageTitleStyle}>
           Todos
         </Typography>
 

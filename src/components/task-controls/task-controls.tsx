@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
 import { FC } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import { TTaskControls } from "./type";
 import { TaskFilter } from "@components";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 import { taskControlsBox, tasksCounterStyle } from "./styles";
 
 export const TaskControls: FC<TTaskControls> = ({
@@ -14,14 +15,14 @@ export const TaskControls: FC<TTaskControls> = ({
 
   return (
     <Box sx={taskControlsBox}>
-      <Typography sx={tasksCounterStyle} color='textSecondary'>
+      <Typography sx={tasksCounterStyle} color="textSecondary">
         {activeCount} item{activeCount === 1 ? "" : "s"} left
       </Typography>
 
       <TaskFilter {...filterProps} />
 
       <Button
-        size="small"
+        startIcon={<ClearAllIcon />}
         variant="outlined"
         disabled={!completedCount}
         onClick={onClearCompleted}

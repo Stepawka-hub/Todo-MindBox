@@ -15,11 +15,13 @@ export const iconStyle: CSSProperties = {
 export const taskTextStyle = {
   completed: {
     fontSize: "1.25rem",
+    fontWeight: 300,
     color: "text.disabled",
     textDecoration: "line-through",
   },
   active: {
     fontSize: "1.25rem",
+    fontWeight: 300,
     color: "text.primary",
     textDecoration: "none",
   },

@@ -11,11 +11,10 @@ export const pageWrapperStyle: SxProps<Theme> = {
 export const pageTitleStyle: SxProps<Theme> = {
   mb: 1,
   textAlign: "center",
-  color: '#dac7c6ff',
 };
 
 export const contentStyle = {
-  boxShadow: '0 2px 5px #ccc',
+  boxShadow: '0 3px 6px #d7d7d7ff',
   borderRadius: '0.5rem',
   overflow: 'hidden'
 };

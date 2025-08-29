@@ -1,6 +1,7 @@
 import { AddTaskForm, TaskControls, TaskList } from "@components";
 import { Grid, Paper, Typography } from "@mui/material";
 import { TTask, TTaskFilter, TTaskUpdateHandler } from "@types";
+import { filterTaskMap } from "@utils/constants";
 import { mockTasks } from "@utils/mock";
 import { FC, useCallback, useEffect, useState } from "react";
 
@@ -20,6 +21,12 @@ export const TodoPage: FC = () => {
     setTasks((p) => p.filter((t) => !t.isCompleted));
   }, []);
 
+  const handleFilterChange = useCallback((value: TTaskFilter) => {
+    setFilter(value);
+  }, []);
+
+  const filteredTasks = tasks.filter(filterTaskMap[filter]);
+
   return (
     <Paper sx={{ p: 2, minHeight: "100vh", overflow: "hidden" }}>
       <Grid container direction="column">
@@ -32,6 +39,8 @@ export const TodoPage: FC = () => {
           <TaskList tasks={filteredTasks} handleTaskUpdate={handleTaskUpdate} />
 
           <TaskControls
+            filter={filter}
+            handleFilterChange={handleFilterChange}
             tasks={filteredTasks}
             onClearCompleted={clearCompleted}
           />

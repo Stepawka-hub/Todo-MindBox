@@ -17,10 +17,11 @@ export const TaskControls: FC<TTaskControls> = ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        p: 1,
+        py: 1,
+        px: 2
       }}
     >
-      <Typography variant="body2">
+      <Typography>
         {activeCount} item{activeCount === 1 ? "" : "s"} left
       </Typography>
 

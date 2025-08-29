@@ -5,6 +5,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
 export const TaskItem: FC<TTaskItemProps> = ({ id, text, isCompleted }) => {
+ 
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
       {isCompleted ? (

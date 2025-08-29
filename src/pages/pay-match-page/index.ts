@@ -1,0 +1,1 @@
+export { PayMatchPage } from './pay-match-page';

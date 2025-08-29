@@ -1,5 +1,5 @@
 export const PATHS: Record<string, string> = {
   index: "/",
-  payMatch: "/pay-match",
+  toDo: "/todo",
   notFound: "*",
 } as const;

@@ -6,6 +6,6 @@ export const AddTaskForm: FC = () => {
     <TextField
       sx={{ width: "100%" }}
       placeholder="What need to be done?"
-    ></TextField>
+    />
   );
 };

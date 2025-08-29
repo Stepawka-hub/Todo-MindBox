@@ -1,11 +1,12 @@
-import { AddTaskForm, TaskFilter, TaskList } from "@components";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import { TTaskUpdateHandler, TTask } from "@types";
+import { AddTaskForm, TaskControls, TaskList } from "@components";
+import { Grid, Paper, Typography } from "@mui/material";
+import { TTask, TTaskFilter, TTaskUpdateHandler } from "@types";
 import { mockTasks } from "@utils/mock";
 import { FC, useCallback, useEffect, useState } from "react";
 
 export const TodoPage: FC = () => {
   const [tasks, setTasks] = useState<TTask[]>([]);
+  const [filter, setFilter] = useState<TTaskFilter>("all");
 
   useEffect(() => {
     setTasks(mockTasks);
@@ -15,20 +16,25 @@ export const TodoPage: FC = () => {
     setTasks((p) => p.map((t) => (t.id === id ? { ...t, ...updates } : t)));
   }, []);
 
+  const clearCompleted = useCallback(() => {
+    setTasks((p) => p.filter((t) => !t.isCompleted));
+  }, []);
+
   return (
     <Paper sx={{ p: 2, minHeight: "100vh", overflow: "hidden" }}>
       <Grid container direction="column">
-        <Typography variant="h3">Todos</Typography>
+        <Typography variant="h3" sx={{ mb: 1, textAlign: "center" }}>
+          Todos
+        </Typography>
         <Paper>
           <AddTaskForm />
 
-          <TaskList tasks={tasks} handleTaskUpdate={handleTaskUpdate} />
+          <TaskList tasks={filteredTasks} handleTaskUpdate={handleTaskUpdate} />
 
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            {tasks.length}
-            <TaskFilter />
-            <Button>Clear completed</Button>
-          </Box>
+          <TaskControls
+            tasks={filteredTasks}
+            onClearCompleted={clearCompleted}
+          />
         </Paper>
       </Grid>
     </Paper>

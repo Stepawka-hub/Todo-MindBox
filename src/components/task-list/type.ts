@@ -1,5 +1,6 @@
 import { TTask, TTaskUpdateHandler } from "@types";
 
-export type TTaskItemProps = TTask & {
+export type TaskListProps = {
+  tasks: TTask[];
   handleTaskUpdate: TTaskUpdateHandler;
 };

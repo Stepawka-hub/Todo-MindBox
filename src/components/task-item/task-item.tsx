@@ -4,19 +4,25 @@ import { Typography, Box, IconButton } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
-export const TaskItem: FC<TTaskItemProps> = ({ id, text, isCompleted }) => {
- 
+export const TaskItem: FC<TTaskItemProps> = ({
+  id,
+  text,
+  isCompleted,
+  handleTaskUpdate,
+}) => {
+  const toggleCompletion = () => {
+    handleTaskUpdate(id, { isCompleted: !isCompleted });
+  };
+
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-      {isCompleted ? (
-        <IconButton>
-          <CheckCircleOutlineIcon />
-        </IconButton>
-      ) : (
-        <IconButton>
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1, p: 1 }}>
+      <IconButton onClick={toggleCompletion}>
+        {isCompleted ? (
+          <CheckCircleOutlineIcon color="success" />
+        ) : (
           <RadioButtonUncheckedIcon />
-        </IconButton>
-      )}
+        )}
+      </IconButton>
       <Typography>{text}</Typography>
     </Box>
   );

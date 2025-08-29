@@ -1,26 +1,18 @@
-import { FC, useEffect, useState } from "react";
-import { TTask } from "@types";
-import { mockTasks } from "@utils/mock";
-import { AddTaskForm, TaskFilter, TaskItem } from "@components";
-import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import { TaskItem } from "@components";
+import { Box, Divider, Typography } from "@mui/material";
+import { FC, memo } from "react";
+import { TaskListProps } from "./type";
 
-export const TaskList: FC = () => {
-  const [tasks, setTasks] = useState<TTask[]>([]);
+export const TaskList: FC<TaskListProps> = memo(
+  ({ tasks, handleTaskUpdate }) => {
+    const taskElements = tasks.map((t) => (
+      <>
+        <TaskItem key={t.id} {...t} handleTaskUpdate={handleTaskUpdate} />
+        <Divider />
+      </>
+    ));
 
-  useEffect(() => {
-    setTasks(mockTasks);
-  }, []);
-
-  const taskElements = tasks.map((t) => (
-    <>
-      <TaskItem key={t.id} {...t} />
-      <Divider />
-    </>
-  ));
-
-  return (
-    <Paper>
-      <AddTaskForm />
+    return (
       <Box>
         {tasks.length ? (
           taskElements
@@ -28,11 +20,6 @@ export const TaskList: FC = () => {
           <Typography>Список задач пуст</Typography>
         )}
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        {tasks.length}
-        <TaskFilter />
-        <Button>Clear completed</Button>
-      </Box>
-    </Paper>
-  );
-};
+    );
+  }
+);

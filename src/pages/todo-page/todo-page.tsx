@@ -1,11 +1,12 @@
+import { FC, useCallback, useEffect, useState } from "react";
+import { SubmitHandler } from "react-hook-form";
 import { AddTaskForm, TAddTaskForm, TaskControls, TaskList } from "@components";
 import { Grid, Paper, Typography } from "@mui/material";
 import { TTask, TTaskFilter, TTaskUpdateHandler } from "@types";
 import { filterTaskMap } from "@utils/constants";
 import { mockTasks } from "@utils/mock";
 import { nanoid } from "nanoid";
-import { FC, useCallback, useEffect, useState } from "react";
-import { SubmitHandler } from "react-hook-form";
+import { contentStyle, pageTitleStyle, pageWrapperStyle } from "./styles";
 
 export const TodoPage: FC = () => {
   const [tasks, setTasks] = useState<TTask[]>([]);
@@ -40,12 +41,13 @@ export const TodoPage: FC = () => {
   const filteredTasks = tasks.filter(filterTaskMap[filter]);
 
   return (
-    <Paper sx={{ p: 2, minHeight: "100vh", overflow: "hidden" }}>
+    <Paper sx={pageWrapperStyle}>
       <Grid container direction="column">
-        <Typography variant="h2" sx={{ mb: 1, textAlign: "center" }}>
+        <Typography variant="h2" sx={pageTitleStyle}>
           Todos
         </Typography>
-        <Paper variant="outlined">
+
+        <Paper variant="outlined" sx={contentStyle}>
           <AddTaskForm onSubmit={handleAddTask} />
 
           <TaskList tasks={filteredTasks} handleTaskUpdate={handleTaskUpdate} />

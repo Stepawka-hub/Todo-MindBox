@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { FC } from "react";
 import { TTaskControls } from "./type";
 import { TaskFilter } from "@components";
+import { taskControlsBox, tasksCounterStyle } from "./styles";
 
 export const TaskControls: FC<TTaskControls> = ({
   tasks,
@@ -12,16 +13,8 @@ export const TaskControls: FC<TTaskControls> = ({
   const activeCount = tasks.length - completedCount;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        py: 1,
-        px: 2
-      }}
-    >
-      <Typography>
+    <Box sx={taskControlsBox}>
+      <Typography sx={tasksCounterStyle} color='textSecondary'>
         {activeCount} item{activeCount === 1 ? "" : "s"} left
       </Typography>
 
@@ -29,6 +22,7 @@ export const TaskControls: FC<TTaskControls> = ({
 
       <Button
         size="small"
+        variant="outlined"
         disabled={!completedCount}
         onClick={onClearCompleted}
       >

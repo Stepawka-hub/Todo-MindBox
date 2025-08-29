@@ -3,6 +3,7 @@ import { TTaskItemProps } from "./type";
 import { Typography, Box, IconButton } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { containerStyle, iconStyle, taskTextStyle } from "./styles";
 
 export const TaskItem: FC<TTaskItemProps> = ({
   id,
@@ -15,15 +16,19 @@ export const TaskItem: FC<TTaskItemProps> = ({
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1, p: 1 }}>
+    <Box sx={containerStyle}>
       <IconButton onClick={toggleCompletion}>
         {isCompleted ? (
-          <CheckCircleOutlineIcon color="success" />
+          <CheckCircleOutlineIcon style={iconStyle} color="success" />
         ) : (
-          <RadioButtonUncheckedIcon />
+          <RadioButtonUncheckedIcon style={iconStyle} />
         )}
       </IconButton>
-      <Typography>{text}</Typography>
+      <Typography
+        sx={isCompleted ? taskTextStyle.completed : taskTextStyle.active}
+      >
+        {text}
+      </Typography>
     </Box>
   );
 };

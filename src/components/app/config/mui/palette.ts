@@ -2,6 +2,9 @@ export const basePalette = {
   primary: {
     main: "rgb(109,122,224)",
   },
+  background: {
+    default: "#f5f5f5",
+  },
   success: {
     main: "#4caf50",
   },

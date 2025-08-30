@@ -1,16 +1,31 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { AddTaskForm, TAddTaskForm, TaskControls, TaskList } from "@components";
-import { Grid, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Collapse,
+  Divider,
+  Grid,
+  IconButton,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { TTask, TTaskFilter, TTaskUpdateHandler } from "@types";
 import { filterTaskMap } from "@utils/constants";
 import { mockTasks } from "@utils/mock";
 import { nanoid } from "nanoid";
-import { contentStyle, pageTitleStyle, pageWrapperStyle } from "./styles";
+import {
+  contentStyle,
+  headerContainerStyle,
+  pageTitleStyle,
+  pageWrapperStyle,
+} from "./styles";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const TodoPage: FC = () => {
   const [tasks, setTasks] = useState<TTask[]>([]);
   const [filter, setFilter] = useState<TTaskFilter>("all");
+  const [isTaskListExpanded, setIsTaskListExpanded] = useState(true);
 
   useEffect(() => {
     setTasks(mockTasks);
@@ -28,6 +43,7 @@ export const TodoPage: FC = () => {
     };
 
     setTasks((p) => [...p, newTask]);
+    setIsTaskListExpanded(true);
   }, []);
 
   const handleFilterChange = useCallback((value: TTaskFilter) => {
@@ -36,6 +52,10 @@ export const TodoPage: FC = () => {
 
   const clearCompleted = () => {
     setTasks((p) => p.filter((t) => !t.isCompleted));
+  };
+
+  const toggleTaskList = () => {
+    setIsTaskListExpanded(!isTaskListExpanded);
   };
 
   const filteredTasks = tasks.filter(filterTaskMap[filter]);
@@ -48,9 +68,24 @@ export const TodoPage: FC = () => {
         </Typography>
 
         <Paper variant="outlined" sx={contentStyle}>
-          <AddTaskForm onSubmit={handleAddTask} />
+          <Box sx={headerContainerStyle}>
+            <IconButton onClick={toggleTaskList}>
+              {isTaskListExpanded ? <ExpandLess /> : <ExpandMore />}
+            </IconButton>
 
-          <TaskList tasks={filteredTasks} handleTaskUpdate={handleTaskUpdate} />
+            <Box sx={{ flex: 1 }}>
+              <AddTaskForm onSubmit={handleAddTask} />
+            </Box>
+          </Box>
+
+          <Divider />
+
+          <Collapse in={isTaskListExpanded}>
+            <TaskList
+              tasks={filteredTasks}
+              handleTaskUpdate={handleTaskUpdate}
+            />
+          </Collapse>
 
           <TaskControls
             filter={filter}

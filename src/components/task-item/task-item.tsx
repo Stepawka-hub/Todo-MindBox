@@ -22,7 +22,7 @@ export const TaskItem: FC<TTaskItemProps> = memo(
           {isCompleted ? (
             <CheckCircleOutlineIcon color="success" />
           ) : (
-            <RadioButtonUncheckedIcon />
+            <RadioButtonUncheckedIcon color='disabled' />
           )}
         </IconButton>
         <Typography

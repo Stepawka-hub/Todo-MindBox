@@ -3,22 +3,32 @@ import { TTask } from "@types";
 export const mockTasks: TTask[] = [
   {
     id: "1",
-    text: "Прочитать вакансию",
+    text: "Изучить вакансию",
     isCompleted: true,
   },
   {
     id: "2",
-    text: "Выполнить тестовое",
-    isCompleted: false,
+    text: "Попить чай",
+    isCompleted: true,
   },
   {
     id: "3",
-    text: "Попить чай",
-    isCompleted: false,
+    text: "Покрыть проект тестами",
+    isCompleted: true,
   },
   {
     id: "4",
-    text: "Покрыть тестами",
+    text: "Поспать",
+    isCompleted: false,
+  },
+  {
+    id: "5",
+    text: "Выполнить тестовое задание",
+    isCompleted: true,
+  },
+  {
+    id: "6",
+    text: "Попасть на крутую стажировку",
     isCompleted: false,
   },
 ];

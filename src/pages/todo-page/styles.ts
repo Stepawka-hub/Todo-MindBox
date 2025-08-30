@@ -10,6 +10,7 @@ export const pageWrapperStyle: SxProps<Theme> = {
 
 export const pageTitleStyle: SxProps<Theme> = {
   mb: 1,
+  fontSize: { xs: '2.75rem', sm: '3rem', md: '3.25rem', lg: '3.75rem' },
   textAlign: "center",
 };
 

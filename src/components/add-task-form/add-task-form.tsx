@@ -1,9 +1,14 @@
 import { FC, memo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { MAX_TASK_TEXT_LENGTH, TEST_IDS } from "@utils/constants";
-import { maxLengthValidation, noEmptyStringValidation, requiredValidation } from "@utils/helpers";
+import {
+  maxLengthValidation,
+  noEmptyStringValidation,
+  requiredValidation,
+} from "@utils/helpers";
 import { AddTaskFormProps, TAddTaskForm } from "./types";
 import { Input } from "@ui";
+import { inputStyle } from "./styles";
 
 export const AddTaskForm: FC<AddTaskFormProps> = memo(({ onSubmit }) => {
   const methods = useForm<TAddTaskForm>({
@@ -30,8 +35,9 @@ export const AddTaskForm: FC<AddTaskFormProps> = memo(({ onSubmit }) => {
           {...register("text", {
             ...requiredValidation(),
             ...maxLengthValidation(MAX_TASK_TEXT_LENGTH),
-            ...noEmptyStringValidation()
+            ...noEmptyStringValidation(),
           })}
+          sx={inputStyle}
         />
       </form>
     </FormProvider>

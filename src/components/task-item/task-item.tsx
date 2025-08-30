@@ -17,11 +17,12 @@ export const TaskItem: FC<TTaskItemProps> = memo(
         <IconButton
           data-testid={TEST_IDS.TASK_ITEM.TOGGLE}
           onClick={toggleCompletion}
+          sx={{ "& svg": iconStyle }}
         >
           {isCompleted ? (
-            <CheckCircleOutlineIcon style={iconStyle} color="success" />
+            <CheckCircleOutlineIcon color="success" />
           ) : (
-            <RadioButtonUncheckedIcon style={iconStyle} />
+            <RadioButtonUncheckedIcon />
           )}
         </IconButton>
         <Typography

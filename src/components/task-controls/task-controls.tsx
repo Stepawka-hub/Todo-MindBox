@@ -3,7 +3,12 @@ import { Box, Button, Typography } from "@mui/material";
 import { TTaskControls } from "./type";
 import { TaskFilter } from "@components";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
-import { taskControlsBox, tasksCounterStyle } from "./styles";
+import {
+  clearButtonStyle,
+  filterBoxStyle,
+  taskControlsBox,
+  tasksCounterStyle,
+} from "./styles";
 import { TEST_IDS } from "@utils/constants";
 
 export const TaskControls: FC<TTaskControls> = ({
@@ -24,7 +29,9 @@ export const TaskControls: FC<TTaskControls> = ({
         {activeCount} item{activeCount === 1 ? "" : "s"} left
       </Typography>
 
-      <TaskFilter {...filterProps} />
+      <Box sx={filterBoxStyle}>
+        <TaskFilter {...filterProps} />
+      </Box>
 
       <Button
         data-testid={TEST_IDS.CLEAR_BTN}
@@ -32,6 +39,7 @@ export const TaskControls: FC<TTaskControls> = ({
         variant="outlined"
         disabled={!completedCount}
         onClick={onClearCompleted}
+        sx={clearButtonStyle}
       >
         Clear completed
       </Button>

@@ -20,9 +20,12 @@ vi.mock("nanoid", () => ({
   nanoid: () => "test-id-123",
 }));
 
-const setup = () => {
+const setup = async () => {
   const user = userEvent.setup();
+
   render(<TodoPage />);
+  await waitForInitialData();
+  
   return { user };
 };
 
@@ -47,7 +50,7 @@ describe("Корректный рендер и работа TodoPage", () => {
   });
 
   it("Корректное добавление новой задачи", async () => {
-    const { user } = setup();
+    const { user } = await setup();
 
     const input = screen.getByTestId(TEST_IDS.ADDTASK_FORM.INPUT);
     await user.type(input, `${TEXT_NEW_TASK}{enter}`);
@@ -58,8 +61,7 @@ describe("Корректный рендер и работа TodoPage", () => {
   });
 
   it("Корректное переключение статуса задачи", async () => {
-    const { user } = setup();
-    await waitForInitialData();
+    const { user } = await setup();
 
     const toggleButtons = screen.getAllByTestId(TEST_IDS.TASK_ITEM.TOGGLE);
     await user.click(toggleButtons[0]);
@@ -78,8 +80,7 @@ describe("Фильтрация и очистка задач", () => {
   });
 
   it("Фильтрация выполненных задач", async () => {
-    const { user } = setup();
-    await waitForInitialData();
+    const { user } = await setup();
 
     await user.click(screen.getByTestId(TEST_IDS.TASK_FILTER_TABS.COMPLETED));
 
@@ -91,8 +92,7 @@ describe("Фильтрация и очистка задач", () => {
   });
 
   it("Фильтрация активных задач", async () => {
-    const { user } = setup();
-    await waitForInitialData();
+    const { user } = await setup();
 
     await user.click(screen.getByTestId(TEST_IDS.TASK_FILTER_TABS.ACTIVE));
 
@@ -104,8 +104,7 @@ describe("Фильтрация и очистка задач", () => {
   });
 
   it("Отображение всех задач", async () => {
-    const { user } = setup();
-    await waitForInitialData();
+    const { user } = await setup();
 
     await user.click(screen.getByTestId(TEST_IDS.TASK_FILTER_TABS.COMPLETED));
     await user.click(screen.getByTestId(TEST_IDS.TASK_FILTER_TABS.ALL));
@@ -115,8 +114,7 @@ describe("Фильтрация и очистка задач", () => {
   });
 
   it("Очистка выполненных задач", async () => {
-    const { user } = setup();
-    await waitForInitialData();
+    const { user } = await setup();
 
     const clearButton = screen.getByTestId(TEST_IDS.CLEAR_BTN);
     await user.click(clearButton);

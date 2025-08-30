@@ -1,15 +1,15 @@
-import { PayMatchPage } from "@pages";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { PATHS } from "./constants";
+import { TodoPage } from "@pages";
 
 export const router = createBrowserRouter([
   {
     path: PATHS.index,
-    element: <Navigate to={PATHS.payMatch} replace />,
+    element: <Navigate to={PATHS.toDo} replace />,
   },
   {
-    path: PATHS.payMatch,
-    element: <PayMatchPage />,
+    path: PATHS.toDo,
+    element: <TodoPage />,
   },
   {
     path: PATHS.notFound,

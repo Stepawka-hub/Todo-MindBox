@@ -22,4 +22,5 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  base: "/Todo-MindBox"
 });

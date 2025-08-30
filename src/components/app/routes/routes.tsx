@@ -1,8 +1,8 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import { PATHS } from "./constants";
 import { TodoPage } from "@pages";
+import { createHashRouter, Navigate } from "react-router-dom";
+import { PATHS } from "./constants";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: PATHS.index,
     element: <Navigate to={PATHS.toDo} replace />,

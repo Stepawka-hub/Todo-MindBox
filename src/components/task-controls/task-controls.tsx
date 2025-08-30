@@ -27,6 +27,7 @@ export const TaskControls: FC<TTaskControls> = ({
       <TaskFilter {...filterProps} />
 
       <Button
+        data-testid={TEST_IDS.CLEAR_BTN}
         startIcon={<ClearAllIcon />}
         variant="outlined"
         disabled={!completedCount}

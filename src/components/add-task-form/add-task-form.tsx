@@ -21,7 +21,11 @@ export const AddTaskForm: FC<AddTaskFormProps> = memo(({ onSubmit }) => {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <Input
-          data-testid={TEST_IDS.ADDTASK_FORM.INPUT}
+          slotProps={{
+            htmlInput: {
+              "data-testid": TEST_IDS.ADDTASK_FORM.INPUT,
+            },
+          }}
           placeholder={"What need to be done?"}
           {...register("text", {
             ...requiredValidation(),

@@ -2,7 +2,7 @@ import { TaskItem } from "@components";
 import { Box, Divider, Typography } from "@mui/material";
 import { FC, Fragment } from "react";
 import { TaskListProps } from "./type";
-import { listStyle } from "./styles";
+import { emptyListStyle, listStyle } from "./styles";
 
 export const TaskList: FC<TaskListProps> = ({ tasks, handleTaskUpdate }) => {
   const taskElements = tasks.map((t) => (
@@ -14,7 +14,11 @@ export const TaskList: FC<TaskListProps> = ({ tasks, handleTaskUpdate }) => {
 
   return (
     <Box sx={listStyle}>
-      {tasks.length ? taskElements : <Typography>Список задач пуст</Typography>}
+      {tasks.length ? (
+        taskElements
+      ) : (
+        <Typography sx={emptyListStyle}>Список задач пуст</Typography>
+      )}
     </Box>
   );
 };

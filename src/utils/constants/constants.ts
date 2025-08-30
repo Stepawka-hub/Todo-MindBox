@@ -5,5 +5,5 @@ export const MAX_TASK_TEXT_LENGTH = 255;
 export const filterTaskMap: TTaskFilterMap = {
   all: () => true,
   completed: (task: TTask) => task.isCompleted,
-  uncompleted: (task: TTask) => !task.isCompleted,
+  active: (task: TTask) => !task.isCompleted,
 } as const;

@@ -20,7 +20,7 @@ describe("Фильтрация задач", () => {
   });
 
   it("Фильтрация активных задач", () => {
-    const result = tasks.filter(filterTaskMap.uncompleted);
+    const result = tasks.filter(filterTaskMap.active);
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe("1");
   });

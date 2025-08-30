@@ -15,3 +15,9 @@ export const maxLengthValidation = (maxLength: number) => ({
 export const requiredValidation = () => ({
   required: "Это поле является обязательным!",
 });
+
+export const noEmptyStringValidation = () => ({
+  validate: (value: string) =>
+    value.trim().length > 0 ||
+    "Поле не может быть пустым или состоять из пробелов!",
+});

@@ -25,7 +25,10 @@ export const TaskItem: FC<TTaskItemProps> = ({
         )}
       </IconButton>
       <Typography
-        sx={isCompleted ? taskTextStyle.completed : taskTextStyle.active}
+        sx={{
+          ...taskTextStyle.base,
+          ...(isCompleted ? taskTextStyle.completed : taskTextStyle.active),
+        }}
       >
         {text}
       </Typography>

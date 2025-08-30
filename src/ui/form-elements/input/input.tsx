@@ -1,7 +1,7 @@
-import { TextField } from "@mui/material";
 import { FC } from "react";
 import { useController, useFormContext } from "react-hook-form";
 import { InputProps } from "./type";
+import { TextField } from "@ui";
 
 export const Input: FC<InputProps> = ({ name, ...props }) => {
   const { control } = useFormContext();
@@ -18,7 +18,6 @@ export const Input: FC<InputProps> = ({ name, ...props }) => {
       onChange={field.onChange}
       error={fieldState.invalid}
       helperText={fieldState.error?.message}
-      sx={{ width: "100%" }}
     />
   );
 };

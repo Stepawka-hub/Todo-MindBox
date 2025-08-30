@@ -16,5 +16,5 @@ export const pageTitleStyle: SxProps<Theme> = {
 export const contentStyle = {
   boxShadow: '0 3px 6px #d7d7d7ff',
   borderRadius: '0.5rem',
-  overflow: 'hidden'
+  overflowX: 'hidden',
 };

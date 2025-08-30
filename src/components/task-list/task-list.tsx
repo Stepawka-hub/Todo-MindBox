@@ -2,6 +2,7 @@ import { TaskItem } from "@components";
 import { Box, Divider, Typography } from "@mui/material";
 import { FC, memo } from "react";
 import { TaskListProps } from "./type";
+import { listStyle } from "./styles";
 
 export const TaskList: FC<TaskListProps> = memo(
   ({ tasks, handleTaskUpdate }) => {
@@ -13,7 +14,7 @@ export const TaskList: FC<TaskListProps> = memo(
     ));
 
     return (
-      <Box>
+      <Box sx={listStyle}>
         {tasks.length ? (
           taskElements
         ) : (

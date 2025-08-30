@@ -4,6 +4,7 @@ import { TTaskControls } from "./type";
 import { TaskFilter } from "@components";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
 import { taskControlsBox, tasksCounterStyle } from "./styles";
+import { TEST_IDS } from "@utils/constants";
 
 export const TaskControls: FC<TTaskControls> = ({
   tasks,
@@ -15,7 +16,11 @@ export const TaskControls: FC<TTaskControls> = ({
 
   return (
     <Box sx={taskControlsBox}>
-      <Typography sx={tasksCounterStyle} color="textSecondary">
+      <Typography
+        data-testid={TEST_IDS.ITEMS_LEFT_COUNT}
+        sx={tasksCounterStyle}
+        color="textSecondary"
+      >
         {activeCount} item{activeCount === 1 ? "" : "s"} left
       </Typography>
 

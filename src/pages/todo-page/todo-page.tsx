@@ -30,20 +30,20 @@ export const TodoPage: FC = () => {
     setTasks((p) => [...p, newTask]);
   }, []);
 
-  const clearCompleted = useCallback(() => {
-    setTasks((p) => p.filter((t) => !t.isCompleted));
-  }, []);
-
   const handleFilterChange = useCallback((value: TTaskFilter) => {
     setFilter(value);
   }, []);
+
+  const clearCompleted = () => {
+    setTasks((p) => p.filter((t) => !t.isCompleted));
+  };
 
   const filteredTasks = tasks.filter(filterTaskMap[filter]);
 
   return (
     <Paper sx={pageWrapperStyle}>
       <Grid container direction="column">
-        <Typography color='primary' variant="h2" sx={pageTitleStyle}>
+        <Typography color="primary" variant="h2" sx={pageTitleStyle}>
           Todos
         </Typography>
 

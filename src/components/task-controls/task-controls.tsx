@@ -26,7 +26,7 @@ export const TaskControls: FC<TTaskControls> = ({
         sx={tasksCounterStyle}
         color="textSecondary"
       >
-        {activeCount} item{activeCount === 1 ? "" : "s"} left
+        {activeCount} task{activeCount === 1 ? "" : "s"} left
       </Typography>
 
       <Box sx={filterBoxStyle}>

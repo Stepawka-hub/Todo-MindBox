@@ -44,7 +44,7 @@ describe("Корректный рендер и работа TodoPage", () => {
     expect(screen.getByText(TASK_ACTIVE.text)).toBeInTheDocument();
     expect(screen.getByText(TASK_COMPLETED.text)).toBeInTheDocument();
     expect(screen.getByTestId(TEST_IDS.ITEMS_LEFT_COUNT)).toHaveTextContent(
-      "1 item left"
+      "1 task left"
     );
   });
 
@@ -68,7 +68,7 @@ describe("Корректный рендер и работа TodoPage", () => {
     const task = await screen.findByText("Первая задача");
     expect(task).toHaveStyle("text-decoration: line-through");
     expect(screen.getByTestId(TEST_IDS.ITEMS_LEFT_COUNT)).toHaveTextContent(
-      "0 items left"
+      "0 tasks left"
     );
   });
 });
@@ -86,7 +86,7 @@ describe("Фильтрация и очистка задач", () => {
     expect(screen.getByText(TASK_COMPLETED.text)).toBeInTheDocument();
     expect(screen.queryByText(TASK_ACTIVE.text)).not.toBeInTheDocument();
     expect(screen.getByTestId(TEST_IDS.ITEMS_LEFT_COUNT)).toHaveTextContent(
-      "0 items left"
+      "0 tasks left"
     );
   });
 
@@ -98,7 +98,7 @@ describe("Фильтрация и очистка задач", () => {
     expect(screen.getByText(TASK_ACTIVE.text)).toBeInTheDocument();
     expect(screen.queryByText(TASK_COMPLETED.text)).not.toBeInTheDocument();
     expect(screen.getByTestId(TEST_IDS.ITEMS_LEFT_COUNT)).toHaveTextContent(
-      "1 item left"
+      "1 task left"
     );
   });
 
@@ -121,7 +121,7 @@ describe("Фильтрация и очистка задач", () => {
     expect(screen.queryByText(TASK_COMPLETED.text)).not.toBeInTheDocument();
     expect(screen.getByText(TASK_ACTIVE.text)).toBeInTheDocument();
     expect(screen.getByTestId(TEST_IDS.ITEMS_LEFT_COUNT)).toHaveTextContent(
-      "1 item left"
+      "1 task left"
     );
     expect(clearButton).toBeDisabled();
   });

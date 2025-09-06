@@ -22,5 +22,5 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  base: "/Todo-MindBox"
+  base: "./", // For deployment specify '/Todo-MindBox'
 });

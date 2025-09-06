@@ -13,7 +13,11 @@ export const TaskItem: FC<TTaskItemProps> = memo(
     };
 
     return (
-      <Box data-testid={TEST_IDS.TASK_ITEM.CONTAINER} sx={containerStyle}>
+      <Box
+        component="article"
+        data-testid={TEST_IDS.TASK_ITEM.CONTAINER}
+        sx={containerStyle}
+      >
         <IconButton
           data-testid={TEST_IDS.TASK_ITEM.TOGGLE}
           onClick={toggleCompletion}
@@ -22,7 +26,7 @@ export const TaskItem: FC<TTaskItemProps> = memo(
           {isCompleted ? (
             <CheckCircleOutlineIcon color="success" />
           ) : (
-            <RadioButtonUncheckedIcon color='disabled' />
+            <RadioButtonUncheckedIcon color="disabled" />
           )}
         </IconButton>
         <Typography

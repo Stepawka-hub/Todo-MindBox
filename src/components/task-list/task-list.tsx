@@ -13,7 +13,7 @@ export const TaskList: FC<TaskListProps> = ({ tasks, handleTaskUpdate }) => {
   ));
 
   return (
-    <Box sx={listStyle}>
+    <Box component="section" sx={listStyle}>
       {tasks.length ? (
         taskElements
       ) : (

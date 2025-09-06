@@ -8,7 +8,7 @@ export const AppRoot: FC = () => {
   const muiTheme = useMemo(() => createTheme(ThemeSettings()), []);
 
   return (
-    <Suspense fallback="">
+    <Suspense>
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         <RouterProvider router={router} />

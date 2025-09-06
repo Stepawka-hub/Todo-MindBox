@@ -1,6 +1,7 @@
-import { FC, useCallback, useEffect, useState } from "react";
-import { SubmitHandler } from "react-hook-form";
-import { AddTaskForm, TAddTaskForm, TaskControls, TaskList } from "@components";
+import { FC, useCallback, useState } from "react";
+import { AddTaskForm, TaskControls, TaskList } from "@components";
+import { useTasks } from "@hooks";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
   Box,
   Collapse,
@@ -10,53 +11,30 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { TTask, TTaskFilter, TTaskUpdateHandler } from "@types";
+import { TTaskFilter } from "@types";
 import { filterTaskMap } from "@utils/constants";
 import { mockTasks } from "@utils/mock";
-import { nanoid } from "nanoid";
 import {
   contentStyle,
   headerContainerStyle,
   pageTitleStyle,
   pageWrapperStyle,
 } from "./styles";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 export const TodoPage: FC = () => {
-  const [tasks, setTasks] = useState<TTask[]>([]);
+  const {
+    tasks,
+    isTaskListExpanded,
+    handleAddTask,
+    handleTaskUpdate,
+    toggleTaskList,
+    clearCompleted,
+  } = useTasks(mockTasks);
   const [filter, setFilter] = useState<TTaskFilter>("all");
-  const [isTaskListExpanded, setIsTaskListExpanded] = useState(true);
-
-  useEffect(() => {
-    setTasks(mockTasks);
-  }, []);
-
-  const handleTaskUpdate: TTaskUpdateHandler = useCallback((id, updates) => {
-    setTasks((p) => p.map((t) => (t.id === id ? { ...t, ...updates } : t)));
-  }, []);
-
-  const handleAddTask: SubmitHandler<TAddTaskForm> = useCallback(({ text }) => {
-    const newTask: TTask = {
-      id: nanoid(),
-      text: text.trim(),
-      isCompleted: false,
-    };
-
-    setTasks((p) => [...p, newTask]);
-    setIsTaskListExpanded(true);
-  }, []);
 
   const handleFilterChange = useCallback((value: TTaskFilter) => {
     setFilter(value);
   }, []);
-
-  const clearCompleted = () => {
-    setTasks((p) => p.filter((t) => !t.isCompleted));
-  };
-
-  const toggleTaskList = () => {
-    setIsTaskListExpanded(!isTaskListExpanded);
-  };
 
   const filteredTasks = tasks.filter(filterTaskMap[filter]);
 
